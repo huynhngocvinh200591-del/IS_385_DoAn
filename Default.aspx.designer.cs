@@ -24,6 +24,15 @@ namespace IS_385_DoAn
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
         /// lnkHome control.
         /// </summary>
         /// <remarks>
@@ -69,49 +78,31 @@ namespace IS_385_DoAn
         protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
         /// <summary>
-        /// btnSearch control.
+        /// upFilters control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.UpdatePanel upFilters;
 
         /// <summary>
-        /// btnBuyNow control.
+        /// lnkReset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuyNow;
+        protected global::System.Web.UI.WebControls.LinkButton lnkReset;
 
         /// <summary>
-        /// btnViewMore control.
+        /// chkSkincare control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnViewMore;
-
-        /// <summary>
-        /// imgBanner control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgBanner;
-
-        /// <summary>
-        /// chkSkinCare control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkSkinCare;
+        protected global::System.Web.UI.WebControls.CheckBox chkSkincare;
 
         /// <summary>
         /// chkMakeup control.
@@ -130,6 +121,24 @@ namespace IS_385_DoAn
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkBody;
+
+        /// <summary>
+        /// chkHair control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkHair;
+
+        /// <summary>
+        /// chkPerfume control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkPerfume;
 
         /// <summary>
         /// chkLRP control.
@@ -159,66 +168,66 @@ namespace IS_385_DoAn
         protected global::System.Web.UI.WebControls.CheckBox chkInnisfree;
 
         /// <summary>
-        /// btnFilter control.
+        /// chkOrdinary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFilter;
+        protected global::System.Web.UI.WebControls.CheckBox chkOrdinary;
 
         /// <summary>
-        /// img1 control.
+        /// chkCocoon control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image img1;
+        protected global::System.Web.UI.WebControls.CheckBox chkCocoon;
 
         /// <summary>
-        /// btnAdd1 control.
+        /// hfMaxPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdd1;
+        protected global::System.Web.UI.WebControls.HiddenField hfMaxPrice;
 
         /// <summary>
-        /// img2 control.
+        /// btnSliderTrigger control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image img2;
+        protected global::System.Web.UI.WebControls.Button btnSliderTrigger;
 
         /// <summary>
-        /// btnAdd2 control.
+        /// upProducts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdd2;
+        protected global::System.Web.UI.UpdatePanel upProducts;
 
         /// <summary>
-        /// img3 control.
+        /// lblCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image img3;
+        protected global::System.Web.UI.WebControls.Label lblCount;
 
         /// <summary>
-        /// btnAdd3 control.
+        /// rptProducts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdd3;
+        protected global::System.Web.UI.WebControls.Repeater rptProducts;
     }
 }
