@@ -18,7 +18,7 @@
                         <i class="fa-solid fa-store"></i>
                     </div>
                     <div class="sidebar__brand-text">
-                        <h3 class="sidebar__brand-name">VINH STORE</h3>
+                        <h3 class="sidebar__brand-name">Admin STORE</h3>
                         <p class="sidebar__brand-role">Admin Portal</p>
                     </div>
                 </div>

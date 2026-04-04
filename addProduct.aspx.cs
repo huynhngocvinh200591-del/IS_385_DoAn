@@ -13,5 +13,29 @@ namespace IS_385_DoAn
         {
 
         }
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            // Tạm thời chuyển về trang khác (hoặc để trống cũng được)
+            Response.Redirect("Default.aspx");
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            // Reset form đơn giản (không bắt buộc)
+            txtName.Text = "";
+            txtPrice.Text = "";
+            txtStock.Text = "";
+            txtDescription.Text = "";
+            ddlCategory.SelectedIndex = 0;
+
+            lblImageMsg.Text = "";
+            lblNameMsg.Text = "";
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            // Không xử lý logic, chỉ hiển thị thông báo test
+            lblNameMsg.Text = "Saved (demo only)";
+        }
     }
 }
