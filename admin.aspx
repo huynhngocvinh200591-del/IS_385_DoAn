@@ -6,12 +6,12 @@
 <head runat="server">
     <title>admin</title>
     <link href="admin.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="layout active__page">
 
-            <!-- SIDEBAR -->
             <div class="sidebar">
                 <div class="sidebar__brand">
                     <div class="sidebar__brand-icon">
@@ -37,10 +37,8 @@
                 </div>
             </div>
 
-            <!-- MAIN -->
             <div class="layout__main">
 
-                <!-- TOPBAR -->
                 <div class="topbar">
                     <h1 class="topbar__title">Product Management</h1>
 
@@ -60,7 +58,6 @@
                     </div>
                 </div>
 
-                <!-- DASHBOARD -->
                 <div class="dashboard">
                     <div class="dashboard__header">
                         <h3 class="dashboard__title">Inventory Overview</h3>
@@ -93,7 +90,6 @@
                     </div>
                 </div>
 
-                <!-- PRODUCT TABLE -->
                 <div class="product-table">
                     <asp:GridView ID="gvProducts" runat="server" 
                         AutoGenerateColumns="False" 
@@ -116,7 +112,7 @@
                                     <asp:Button ID="btnDelete" runat="server" 
                                         CommandName="DeleteProduct"
                                         CommandArgument='<%# Eval("ProductID") %>'
-                                        Text="Delete" />
+                                        Text="Delete" OnClientClick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -124,9 +120,40 @@
                     </asp:GridView>
                 </div>
 
+                <asp:Panel ID="pnlForm" runat="server" Visible="false" CssClass="form-panel" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 20px;">
+                    <h3 style="margin-bottom: 20px; color: #333;"><asp:Label ID="lblFormTitle" runat="server" Text="Thêm Sản Phẩm Mới"></asp:Label></h3>
+                    
+                    <asp:HiddenField ID="hfProductId" runat="server" />
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="font-weight: 600; color: #555;">Tên sản phẩm:</label><br />
+                        <asp:TextBox ID="txtProductName" runat="server" CssClass="topbar__search" Width="100%" style="margin-top: 5px;"></asp:TextBox>
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="font-weight: 600; color: #555;">Danh mục:</label><br />
+                        <asp:TextBox ID="txtCategory" runat="server" CssClass="topbar__search" Width="100%" style="margin-top: 5px;"></asp:TextBox>
+                    </div>
+
+                    <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+                        <div style="flex: 1;">
+                            <label style="font-weight: 600; color: #555;">Giá bán:</label><br />
+                            <asp:TextBox ID="txtPrice" runat="server" CssClass="topbar__search" Width="100%" TextMode="Number" style="margin-top: 5px;"></asp:TextBox>
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-weight: 600; color: #555;">Tồn kho:</label><br />
+                            <asp:TextBox ID="txtStock" runat="server" CssClass="topbar__search" Width="100%" TextMode="Number" style="margin-top: 5px;"></asp:TextBox>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                        <asp:Button ID="btnSave" runat="server" Text="Lưu thay đổi" OnClick="btnSave_Click" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;" />
+                        <asp:Button ID="btnCancel" runat="server" Text="Hủy bỏ" OnClick="btnCancel_Click" style="background: #f44336; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;" />
+                    </div>
+                </asp:Panel>
+
             </div>
         </div>
-
     </form>
 </body>
 </html>
