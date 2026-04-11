@@ -93,12 +93,10 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
-        /* Thêm khoảng lùi để khi cuộn xuống không bị dính vào thanh Header */
         #product-section {
             scroll-margin-top: 80px; 
         }
 
-        /* --- CSS CHO BỘ LỌC TRƯỢT THEO (STICKY SIDEBAR) --- */
         .sidebar {
             position: sticky !important;
             top: 100px !important; /* Cách mép trên 100px để không bị đè vào Header */
@@ -197,7 +195,7 @@
 
         <div class="hero-banner">
             <div class="hero-text">
-                <h1>Làm đẹp tự nhiên<br><span>Tỏa sáng mọi ngày</span></h1>
+                <h1>Làm đẹp tự nhiên<br /><span>Tỏa sáng mọi ngày</span></h1>
                 <p>Khám phá bộ sưu tập mỹ phẩm chất lượng cao từ các thương hiệu hàng đầu thế giới</p>
                 <div class="hero-buttons">
                     <a href="#product-section" class="btn-primary">Mua ngay</a>

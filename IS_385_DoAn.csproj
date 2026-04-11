@@ -71,6 +71,10 @@
     <Content Include="addProduct.css" />
     <Content Include="admin.aspx" />
     <Content Include="admin.css" />
+    <Content Include="App_Data\DataKhachHang.mdf" />
+    <Content Include="App_Data\DataKhachHang_log.ldf">
+      <DependentUpon>DataKhachHang.mdf</DependentUpon>
+    </Content>
     <Content Include="Default.aspx" />
     <Content Include="Default.css" />
     <Content Include="Global.asax" />
@@ -123,7 +127,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>

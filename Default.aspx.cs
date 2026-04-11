@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace IS_385_DoAn
 {
     public partial class Default : System.Web.UI.Page
     {
-        // Class Product định nghĩa cấu trúc dữ liệu
+        private readonly string connStr = ConfigurationManager.ConnectionStrings["DuLieuKhachHang"].ConnectionString;
+
         public class Product
         {
             public int Id { get; set; }
@@ -20,113 +26,162 @@ namespace IS_385_DoAn
             public int Reviews { get; set; }
         }
 
-        // Tạo dữ liệu ảo (Mock Data) - Đã xóa tạm đường dẫn ảnh
-        private List<Product> GetMockProducts()
-        {
-            return new List<Product>
-            {
-                new Product { Id=1, Name="Kem chống nắng SPF50+ PA++++", Brand="La Roche-Posay", Category="Chăm sóc da mặt", Price=385000, OldPrice=450000, ImageUrl="", Discount="-14%", Reviews=1234 },
-                new Product { Id=2, Name="Sữa rửa mặt dịu nhẹ cho da nhạy cảm", Brand="Cetaphil", Category="Chăm sóc da mặt", Price=225000, OldPrice=280000, ImageUrl="", Discount="-20%", Reviews=892 },
-                new Product { Id=3, Name="Mặt nạ giấy dưỡng ẩm chiết xuất trà xanh", Brand="Innisfree", Category="Chăm sóc da mặt", Price=320000, OldPrice=null, ImageUrl="", Discount="", Reviews=2341 },
-                new Product { Id=4, Name="Serum Niacinamide 10% + Zinc 1%", Brand="The Ordinary", Category="Chăm sóc da mặt", Price=250000, OldPrice=280000, ImageUrl="", Discount="-10%", Reviews=5412 },
-                new Product { Id=5, Name="Tẩy da chết toàn thân cà phê Đắk Lắk", Brand="Cocoon", Category="Chăm sóc cơ thể", Price=115000, OldPrice=145000, ImageUrl="", Discount="-20%", Reviews=980 },
-                new Product { Id=6, Name="Kem dưỡng phục hồi da B5 Baume", Brand="La Roche-Posay", Category="Chăm sóc da mặt", Price=320000, OldPrice=350000, ImageUrl="", Discount="-8%", Reviews=3120 },
-                new Product { Id=7, Name="Sữa tắm dịu nhẹ không xà phòng", Brand="Cetaphil", Category="Chăm sóc cơ thể", Price=310000, OldPrice=350000, ImageUrl="", Discount="-11%", Reviews=450 },
-                new Product { Id=8, Name="Sữa rửa mặt tro núi lửa Jeju", Brand="Innisfree", Category="Chăm sóc da mặt", Price=190000, OldPrice=220000, ImageUrl="", Discount="-13%", Reviews=1120 },
-                new Product { Id=9, Name="AHA 30% + BHA 2% Peeling Solution", Brand="The Ordinary", Category="Chăm sóc da mặt", Price=290000, OldPrice=null, ImageUrl="", Discount="", Reviews=8900 },
-                new Product { Id=10, Name="Nước hoa hồng cấp ẩm thuần chay", Brand="Cocoon", Category="Chăm sóc da mặt", Price=175000, OldPrice=195000, ImageUrl="", Discount="-10%", Reviews=670 },
-                new Product { Id=11, Name="Kem trị mụn Effaclar Duo+", Brand="La Roche-Posay", Category="Chăm sóc da mặt", Price=410000, OldPrice=460000, ImageUrl="", Discount="-10%", Reviews=4530 },
-                new Product { Id=12, Name="Kem dưỡng ẩm Daily Advance", Brand="Cetaphil", Category="Chăm sóc cơ thể", Price=280000, OldPrice=320000, ImageUrl="", Discount="-12%", Reviews=321 },
-                new Product { Id=13, Name="Kem dưỡng sáng da Cherry Blossom", Brand="Innisfree", Category="Chăm sóc da mặt", Price=450000, OldPrice=500000, ImageUrl="", Discount="-10%", Reviews=1890 },
-                new Product { Id=14, Name="Serum Hyaluronic Acid 2% + B5", Brand="The Ordinary", Category="Chăm sóc da mặt", Price=260000, OldPrice=null, ImageUrl="", Discount="", Reviews=3420 },
-                new Product { Id=15, Name="Dầu gội bưởi giảm rụng tóc", Brand="Cocoon", Category="Chăm sóc tóc", Price=225000, OldPrice=250000, ImageUrl="", Discount="-10%", Reviews=1560 },
-                new Product { Id=16, Name="Nước tẩy trang Micellar Water", Brand="La Roche-Posay", Category="Chăm sóc da mặt", Price=360000, OldPrice=400000, ImageUrl="", Discount="-10%", Reviews=5100 },
-                new Product { Id=17, Name="Kem chống nắng Sun Gel SPF50", Brand="Cetaphil", Category="Chăm sóc da mặt", Price=390000, OldPrice=450000, ImageUrl="", Discount="-13%", Reviews=760 },
-                new Product { Id=18, Name="Phấn phủ kiềm dầu No Sebum", Brand="Innisfree", Category="Trang điểm", Price=140000, OldPrice=160000, ImageUrl="", Discount="-12%", Reviews=6500 },
-                new Product { Id=19, Name="Nước hoa hồng Glycolic Acid 7%", Brand="The Ordinary", Category="Chăm sóc da mặt", Price=350000, OldPrice=null, ImageUrl="", Discount="", Reviews=2100 },
-                new Product { Id=20, Name="Nước dưỡng tóc tinh dầu bưởi", Brand="Cocoon", Category="Chăm sóc tóc", Price=145000, OldPrice=165000, ImageUrl="", Discount="-12%", Reviews=2300 }
-            };
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                InitializeDatabase();
                 LoadData();
             }
         }
 
-        protected void Filter_Changed(object sender, EventArgs e)
+        private void InitializeDatabase()
         {
-            LoadData();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+                    string checkSql = "SELECT COUNT(*) FROM Products";
+                    SqlCommand checkCmd = new SqlCommand(checkSql, conn);
+                    int count = (int)checkCmd.ExecuteScalar();
+
+                    if (count == 0)
+                    {
+                        InsertMockProductsToDB();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Lỗi khởi tạo DB: " + ex.Message);
+            }
         }
 
-        protected void lnkReset_Click(object sender, EventArgs e)
-        {
-            // Reset các Checkbox
-            chkSkincare.Checked = chkMakeup.Checked = chkBody.Checked =
-            chkHair.Checked = chkPerfume.Checked = false;
-
-            chkLRP.Checked = chkCetaphil.Checked = chkInnisfree.Checked =
-            chkOrdinary.Checked = chkCocoon.Checked = false;
-
-            // Reset khoảng giá về tối đa
-            hfMaxPrice.Value = "1000000";
-
-            LoadData();
-        }
-
-        private void LoadData()
+        private void InsertMockProductsToDB()
         {
             var products = GetMockProducts();
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                foreach (var p in products)
+                {
+                    string sql = @"INSERT INTO Products (Name, Brand, Category, Price, OldPrice, ImageUrl, Discount, Reviews)
+                                   VALUES (@Name, @Brand, @Category, @Price, @OldPrice, @ImageUrl, @Discount, @Reviews)";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = p.Name;
+                        cmd.Parameters.Add("@Brand", SqlDbType.NVarChar).Value = p.Brand;
+                        cmd.Parameters.Add("@Category", SqlDbType.NVarChar).Value = p.Category;
+                        cmd.Parameters.Add("@Price", SqlDbType.Decimal).Value = p.Price;
+                        cmd.Parameters.Add("@OldPrice", SqlDbType.Decimal).Value = (object)p.OldPrice ?? DBNull.Value;
+                        cmd.Parameters.Add("@ImageUrl", SqlDbType.NVarChar).Value = (object)p.ImageUrl ?? "";
+                        cmd.Parameters.Add("@Discount", SqlDbType.NVarChar).Value = (object)p.Discount ?? "";
+                        cmd.Parameters.Add("@Reviews", SqlDbType.Int).Value = p.Reviews;
 
-            // 1. Lọc theo Danh mục
-            var selectedCategories = new List<string>();
-            if (chkSkincare.Checked) selectedCategories.Add("Chăm sóc da mặt");
-            if (chkMakeup.Checked) selectedCategories.Add("Trang điểm");
-            if (chkBody.Checked) selectedCategories.Add("Chăm sóc cơ thể");
-            if (chkHair.Checked) selectedCategories.Add("Chăm sóc tóc");
-            if (chkPerfume.Checked) selectedCategories.Add("Nước hoa");
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
 
+        private List<Product> GetProductsFromDB()
+        {
+            var list = new List<Product>();
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                string sql = "SELECT Id, Name, Brand, Category, Price, OldPrice, ImageUrl, Discount, Reviews FROM Products";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Product
+                        {
+                            Id = reader.GetInt32(0),
+                            Name = reader.IsDBNull(1) ? "" : reader.GetString(1),
+                            Brand = reader.IsDBNull(2) ? "" : reader.GetString(2),
+                            Category = reader.IsDBNull(3) ? "" : reader.GetString(3),
+                            Price = reader.GetDecimal(4),
+                            OldPrice = reader.IsDBNull(5) ? null : (decimal?)reader.GetDecimal(5),
+                            ImageUrl = reader.IsDBNull(6) ? "" : reader.GetString(6),
+                            Discount = reader.IsDBNull(7) ? "" : reader.GetString(7),
+                            Reviews = reader.IsDBNull(8) ? 0 : reader.GetInt32(8)
+                        });
+                    }
+                }
+            }
+            return list;
+        }
+
+        protected void LoadData()
+        {
+            var products = GetProductsFromDB();
+
+            // Tìm kiếm
+            if (!string.IsNullOrEmpty(txtSearch.Text))
+            {
+                string keyword = txtSearch.Text.Trim().ToLower();
+                products = products.Where(p => p.Name.ToLower().Contains(keyword) || p.Brand.ToLower().Contains(keyword)).ToList();
+            }
+
+            // Lọc danh mục
+            var selectedCategories = GetSelectedItems(chkSkincare, chkMakeup, chkBody, chkHair, chkPerfume);
             if (selectedCategories.Any())
-            {
                 products = products.Where(p => selectedCategories.Contains(p.Category)).ToList();
-            }
 
-            // 2. Lọc theo Thương hiệu
-            var selectedBrands = new List<string>();
-            if (chkLRP.Checked) selectedBrands.Add("La Roche-Posay");
-            if (chkCetaphil.Checked) selectedBrands.Add("Cetaphil");
-            if (chkInnisfree.Checked) selectedBrands.Add("Innisfree");
-            if (chkOrdinary.Checked) selectedBrands.Add("The Ordinary");
-            if (chkCocoon.Checked) selectedBrands.Add("Cocoon");
-
+            // Lọc thương hiệu
+            var selectedBrands = GetSelectedItems(chkLRP, chkCetaphil, chkInnisfree, chkOrdinary, chkCocoon);
             if (selectedBrands.Any())
-            {
                 products = products.Where(p => selectedBrands.Contains(p.Brand)).ToList();
-            }
 
-            // 3. Lọc theo Giá
-            decimal maxPrice = 1000000;
-            if (decimal.TryParse(hfMaxPrice.Value, out maxPrice))
-            {
+            // Lọc giá
+            if (decimal.TryParse(hfMaxPrice.Value, out decimal maxPrice))
                 products = products.Where(p => p.Price <= maxPrice).ToList();
-            }
 
-            // Đổ dữ liệu ra màn hình
             rptProducts.DataSource = products;
             rptProducts.DataBind();
             lblCount.Text = products.Count.ToString();
         }
 
-        protected void rptProducts_ItemCommand(object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e)
+        private List<string> GetSelectedItems(params CheckBox[] checkBoxes)
         {
-            // Xử lý sự kiện khi bấm nút "Thêm vào giỏ" ở đây sau
+            return checkBoxes.Where(cb => cb != null && cb.Checked).Select(cb => cb.Text).ToList();
         }
 
-        protected void btnSliderTrigger_Click(object sender, EventArgs e)
+        protected void Filter_Changed(object sender, EventArgs e) => LoadData();
+
+        protected void lnkReset_Click(object sender, EventArgs e)
         {
+            var allCheckBoxes = new[] { chkSkincare, chkMakeup, chkBody, chkHair, chkPerfume,
+                                        chkLRP, chkCetaphil, chkInnisfree, chkOrdinary, chkCocoon };
+            foreach (var cb in allCheckBoxes) if (cb != null) cb.Checked = false;
+
+            hfMaxPrice.Value = "1000000";
             LoadData();
+        }
+
+        protected void rptProducts_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "AddToCart")
+            {
+                string productId = e.CommandArgument.ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", $"alert('Đã thêm sản phẩm vào giỏ hàng thành công!');", true);
+            }
+        }
+
+        protected void btnSliderTrigger_Click(object sender, EventArgs e) => LoadData();
+
+        private List<Product> GetMockProducts()
+        {
+            return new List<Product>
+            {
+                new Product { Name="Kem chống nắng SPF50+ PA++++", Brand="La Roche-Posay", Category="Chăm sóc da mặt", Price=385000, OldPrice=450000, Discount="-14%", Reviews=1234, ImageUrl="img/lrp_kcn.jpg" },
+                new Product { Name="Sữa rửa mặt dịu nhẹ cho da nhạy cảm", Brand="Cetaphil", Category="Chăm sóc da mặt", Price=225000, OldPrice=280000, Discount="-20%", Reviews=892, ImageUrl="img/cetaphil_srm.jpg" },
+                new Product { Name="Mặt nạ giấy dưỡng ẩm trà xanh", Brand="Innisfree", Category="Chăm sóc da mặt", Price=320000, OldPrice=null, Discount="", Reviews=2341, ImageUrl="img/inni_mask.jpg" },
+                new Product { Name="Tẩy da chết toàn thân cà phê Đắk Lắk", Brand="Cocoon", Category="Chăm sóc cơ thể", Price=115000, OldPrice=145000, Discount="-20%", Reviews=980, ImageUrl="img/cocoon_scrub.jpg" }
+            };
         }
     }
 }
