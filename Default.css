@@ -1,0 +1,512 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+.sidebar {
+    width: 320px; /* tăng từ 280px lên 320px */
+    flex-shrink: 0;
+    background: #fff;
+    padding: 20px 25px; /* tăng padding ngang */
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+
+body {
+    background-color: #fafbfc;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 800;
+    color: #e6007e;
+}
+
+    .logo span {
+        color: #333;
+    }
+
+.menu {
+    display: flex;
+    gap: 30px;
+}
+
+    .menu a {
+        font-weight: 700;
+        color: #111;
+        font-size: 15px;
+        transition: 0.2s;
+    }
+
+        .menu a:hover, .menu a.active {
+            color: #e6007e;
+        }
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #f0f2f5;
+    border-radius: 8px;
+    padding: 10px 15px;
+    width: 300px;
+}
+
+    .search-box i {
+        color: #888;
+        margin-right: 10px;
+    }
+
+    .search-box input {
+        border: none;
+        background: transparent;
+        outline: none;
+        width: 100%;
+        font-size: 14px;
+    }
+
+.header-icons {
+    display: flex;
+    gap: 20px;
+}
+
+    .header-icons a {
+        color: #333;
+        font-size: 20px;
+        transition: 0.2s;
+    }
+
+        .header-icons a:hover {
+            color: #e6007e;
+        }
+
+/* LAYOUT */
+.container {
+    display: flex;
+    max-width: 100vw;
+    margin: 40px auto;
+    padding: 0 60px;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* CỘT TRÁI (BỘ LỌC) */
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+    .filter-header h3 {
+        font-size: 18px;
+        color: #111;
+        font-weight: 800;
+    }
+
+.reset-filter {
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+    .reset-filter:hover {
+        text-decoration: underline;
+        color: #e6007e;
+    }
+
+.sidebar h4 {
+    font-size: 16px;
+    margin: 25px 0 15px 0;
+    color: #111;
+    font-weight: 700;
+    border-top: 1px dashed #ddd;
+    padding-top: 15px;
+}
+
+    .sidebar h4:first-of-type {
+        border-top: none;
+        padding-top: 0;
+        margin-top: 10px;
+    }
+
+/* FIXED BỘ LỌC */
+/* Căn chỉnh CheckBoxList thẳng hàng ngang */
+.filter-group table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.filter-group td {
+    display: flex;
+    align-items: center;
+    padding: 6px 0; /* Khoảng cách giữa các dòng */
+}
+
+.filter-group input[type="checkbox"] {
+    margin-right: 10px !important; /* Khoảng cách giữa ô tick và chữ */
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.filter-group label {
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 16px;
+    display: inline-block;
+}
+
+    /* ASP.NET CheckBox render ra: <span><input type="checkbox" /><label /></span> */
+    .filter-group span {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 10px;
+        width: 100%;
+    }
+
+    /* Checkbox ô vuông */
+    .filter-group input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        min-width: 18px;
+        max-width: 18px;
+        border: 2px solid #bbb;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 0 !important;
+        padding: 0 !important;
+        background-color: #fff;
+        position: relative;
+        flex-shrink: 0;
+        vertical-align: middle; /* ← căn giữa theo chiều dọc với text */
+        transition: background-color 0.2s, border-color 0.2s;
+    }
+
+        .filter-group input[type="checkbox"]:checked {
+            background-color: #e6007e;
+            border-color: #e6007e;
+        }
+
+            .filter-group input[type="checkbox"]:checked::after {
+                content: '\2714';
+                font-size: 11px;
+                color: white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+    /* Label text căn giữa với checkbox */
+    .filter-group label {
+        font-size: 14px;
+        color: #444;
+        cursor: pointer;
+        font-weight: 600;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 18px; /* ← bằng với height của checkbox */
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    /* Checkbox custom ô vuông trắng viền xám rõ */
+    /* FIXED: ASP.NET CheckBox render ra <span><input/><label/></span> */
+    .filter-group span {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 10px;
+        margin-bottom: 4px;
+        width: 100%;
+    }
+
+    .filter-group input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        min-width: 18px;
+        border: 2px solid #bbb;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 0 !important;
+        background-color: #fff;
+        position: relative;
+        flex-shrink: 0;
+        transition: background-color 0.2s, border-color 0.2s;
+    }
+
+        .filter-group input[type="checkbox"]:checked {
+            background-color: #e6007e;
+            border-color: #e6007e;
+        }
+
+            .filter-group input[type="checkbox"]:checked::after {
+                content: '\2714';
+                font-size: 11px;
+                color: white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+    .filter-group label {
+        font-size: 14px;
+        color: #444;
+        cursor: pointer;
+        font-weight: 600;
+        margin: 0 !important;
+        line-height: 1.2;
+        display: inline-block;
+    }
+            }
+
+    /* Label text */
+    .filter-group label {
+        font-size: 14px;
+        color: #444;
+        cursor: pointer;
+        font-weight: 600;
+        margin: 0 !important;
+        line-height: 1;
+        display: inline-block;
+    }
+
+/* SLIDER MỨC GIÁ */
+.price-slider-container {
+    margin-top: 10px;
+}
+
+    .price-slider-container input[type=range] {
+        -webkit-appearance: none;
+        width: 100%;
+        background: transparent;
+        margin: 10px 0;
+    }
+
+        .price-slider-container input[type=range]:focus {
+            outline: none;
+        }
+
+        .price-slider-container input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            background: #ddd;
+            border-radius: 10px;
+        }
+
+        .price-slider-container input[type=range]::-webkit-slider-thumb {
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2px solid #e6007e;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -6px;
+        }
+
+.price-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+    margin-top: 5px;
+}
+
+/* CỘT PHẢI (SẢN PHẨM GRID) */
+.main-content {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.product-header {
+    margin-bottom: 25px;
+}
+
+    .product-header h2 {
+        font-size: 24px;
+        color: #111;
+        font-weight: 800;
+    }
+
+/* Grid 5 cột sản phẩm */
+.products {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eee;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 100%;
+    overflow: hidden;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+.discount-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #e6007e;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    z-index: 2;
+}
+
+.img-wrapper {
+    background: #f8f9fa;
+    padding: 15px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.card-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.brand {
+    color: #999;
+    font-size: 12px;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.product-name {
+    font-size: 15px;
+    color: #111;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    font-weight: 700;
+    min-height: 42px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.rating {
+    color: #ffc107;
+    font-size: 11px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+    .rating span {
+        color: #999;
+        margin-left: 5px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+.price {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+    .price .current {
+        color: #e6007e;
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .price .old {
+        color: #aaa;
+        text-decoration: line-through;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+.btn-add-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background: #e6007e;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 14px;
+    margin-top: auto;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+    .btn-add-cart:hover {
+        background: #cc006f;
+    }

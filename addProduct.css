@@ -1,0 +1,142 @@
+﻿body {
+    margin: 0;
+}
+
+:root {
+    --primary: #F72585;
+    --primary-hover: #E11D74;
+    --bg-page: #f6e3e9;
+    --bg-card: #f7cde0;
+    --text-main: #2B2B2B;
+    --text-sub: #6B6B6B;
+    --text-muted: #9CA3AF;
+    --success: #16A34A;
+    --warning: #F97316;
+    --danger: #DC2626;
+    --border-light: #f1bacb;
+}
+/* css form add new product */
+.product-form {
+    position: fixed; /* Nổi độc lập, không phụ thuộc body */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    max-width: 90%;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid var(--bg-card);
+    z-index: 1000; /* Đảm bảo nổi trên mọi layout */
+}
+
+.product-form__header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--bg-card);
+}
+
+.product-form__title {
+    font-size: 1.4rem;
+    margin: 0;
+    font-weight: 1000;
+}
+
+.product-form__subtitle {
+    color: var(--primary);
+    margin: 0 0 20px 0;
+}
+
+.product-form__close:hover {
+    color: white;
+    background-color: red;
+    height: 19px;
+}
+
+.product-form__upload {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    background-color: var(--bg-page);
+    border-radius: 20px;
+    border: 2px dashed var(--bg-card);
+}
+/* input file ẩn nhưng vẫn click được */
+.product-form__upload-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.product-form__upload-placeholder {
+    display: block;
+    text-align: center;
+}
+
+
+.product-form__upload-icon {
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+.product-form__upload-text {
+    margin: 12px 0 0 0;
+}
+
+.product-form__upload-hint {
+    color: var(--primary);
+}
+
+.product-form__field {
+    margin-top: 12px;
+    max-width: 100%;
+}
+
+.product-form__input--width {
+    width: 100%;
+}
+
+.product-form__input {
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--bg-page);
+    padding: 8px 4px;
+}
+
+.product-form__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-form__footer {
+    margin-top: 12px;
+    display: flex;
+    justify-content: right;
+    border-radius: 4px;
+    border-top: 1px solid var(--primary);
+}
+
+.product-form__button {
+    margin: 12px;
+    padding: 12px;
+    margin-left: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--primary);
+    cursor: pointer;
+}
+
+.product-form__button--secondary {
+    background-color: white;
+}
+
+.product-form__button--primary {
+    color: white;
+    background-color: var(--primary);
+}
+
+
+

@@ -1,0 +1,217 @@
+﻿body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg-page);
+}
+
+/* VARIABLES */
+:root {
+    --primary: #F72585;
+    --primary-hover: #E11D74;
+    --bg-page: #f6e3e9;
+    --bg-card: #ffffff;
+    --bg-white: #ffffff;
+    --text-main: #2B2B2B;
+    --text-sub: #6B6B6B;
+    --text-muted: #9CA3AF;
+    --success: #16A34A;
+    --warning: #F97316;
+    --danger: #DC2626;
+    --border-light: #f1bacb;
+}
+
+/* ===== LAYOUT ===== */
+.layout {
+    display: flex; /* QUAN TRỌNG */
+    min-height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 260px;
+    background: var(--bg-white);
+    padding: 24px;
+    border-right: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* BRAND */
+.sidebar__brand {
+    display: flex;
+    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.sidebar__brand-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar__brand-name {
+    margin-left: 12px;
+    font-size: 18px;
+}
+
+.sidebar__brand-role {
+    font-size: 12px;
+    margin-left: 12px;
+    color: var(--text-muted);
+}
+
+/* MENU */
+.sidebar__menu {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar__menu-item {
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-sub);
+    text-decoration: none;
+}
+
+    .sidebar__menu-item:hover {
+        background: #f3f3f3;
+    }
+
+.sidebar__menu-item--active {
+    background: var(--primary);
+    color: white;
+}
+
+/* LOGOUT */
+.sidebar__logout--btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* ===== MAIN ===== */
+.layout__main {
+    flex: 1;
+    padding: 24px;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.topbar__title {
+    font-size: 24px;
+}
+
+.topbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.topbar__search {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+}
+
+.topbar__user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.topbar__user-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+/* ===== DASHBOARD ===== */
+.dashboard {
+    margin-bottom: 20px;
+}
+
+.dashboard__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard__add {
+    padding: 8px 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.dashboard__items {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.dashboard__cards {
+    flex: 1;
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+}
+
+/* ===== TABLE ===== */
+.product-table {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+/* FIX GRIDVIEW */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .table th, .table td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+
+    /* BUTTON ACTION */
+    .table input[type="submit"] {
+        padding: 6px 10px;
+        margin-right: 5px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .table input[value="Edit"] {
+        background: #4CAF50;
+        color: white;
+    }
+
+    .table input[value="Delete"] {
+        background: red;
+        color: white;
+    }
