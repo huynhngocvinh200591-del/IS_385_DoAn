@@ -30,7 +30,7 @@ namespace IS_385_DoAn
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClose;
+        protected global::System.Web.UI.WebControls.LinkButton btnClose;
 
         /// <summary>
         /// fuImage control.
@@ -42,15 +42,6 @@ namespace IS_385_DoAn
         protected global::System.Web.UI.WebControls.FileUpload fuImage;
 
         /// <summary>
-        /// lblImageMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblImageMsg;
-
-        /// <summary>
         /// txtName control.
         /// </summary>
         /// <remarks>
@@ -58,15 +49,6 @@ namespace IS_385_DoAn
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtName;
-
-        /// <summary>
-        /// lblNameMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNameMsg;
 
         /// <summary>
         /// ddlCategory control.
@@ -112,6 +94,15 @@ namespace IS_385_DoAn
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
+
+        /// <summary>
+        /// lblStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStatus;
 
         /// <summary>
         /// btnCancel control.

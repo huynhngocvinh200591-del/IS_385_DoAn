@@ -137,6 +137,32 @@
     color: white;
     background-color: var(--primary);
 }
+/* Đảm bảo label có khoảng cách */
+.product-form__label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text-main);
+    font-size: 0.9rem;
+}
 
+/* Hiệu ứng hover cho nút đóng */
+.product-form__close {
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 4px;
+    font-weight: bold;
+}
 
+/* Chỉnh lại Row để các cột đều nhau */
+.product-form__row .product-form__field {
+    flex: 1;
+}
+
+/* Input focus */
+.product-form__input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 5px rgba(247, 37, 133, 0.2);
+}
 
