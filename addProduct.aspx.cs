@@ -16,7 +16,7 @@ namespace IS_385_DoAn
         protected void btnClose_Click(object sender, EventArgs e)
         {
             // Tạm thời chuyển về trang khác (hoặc để trống cũng được)
-            Response.Redirect("Default.aspx");
+            Response.Redirect("admin.aspx");
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
